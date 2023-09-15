@@ -1,10 +1,7 @@
 package com.gabrielosorioz.backend.controller;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,22 +10,24 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.gabrielosorioz.backend.entity.Estado;
 import com.gabrielosorioz.backend.service.EstadoService;
 
-
 @RestController
 @RequestMapping("/api/estado")
-@CrossOrigin
 public class EstadoController {
     
     @Autowired
     private EstadoService estadoService;
 
+
     @GetMapping("/")
     public List<Estado> buscarTodos(){
        return estadoService.buscarTodos();
+    
+    @GetMapping("/")
+    public List<Estado> buscarTodos(){
+        return estadoService.buscarTodos();
     }
 
     @PostMapping("/")
@@ -43,6 +42,11 @@ public class EstadoController {
 
     @DeleteMapping("/{id}")   
     public ResponseEntity<Void> excluir(@PathVariable("id") Long id){
+       return estadoService.alterar(estado);
+    }
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluir(@PathVariable ("id") Long id){
         estadoService.excluir(id);
         return ResponseEntity.ok().build();
     }
@@ -54,3 +58,4 @@ public class EstadoController {
     }
 
 }
+
