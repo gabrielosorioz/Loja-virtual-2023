@@ -1,5 +1,7 @@
 package com.gabrielosorioz.backend.controller;
+
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,45 +13,46 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.gabrielosorioz.backend.entity.Estado;
-import com.gabrielosorioz.backend.service.EstadoService;
+
+import com.gabrielosorioz.backend.entity.Pessoa;
+import com.gabrielosorioz.backend.service.PessoaService;
 
 @RestController
-@RequestMapping("/api/estado")
+@RequestMapping("/api/pessoa")
 @CrossOrigin
-public class EstadoController {
+public class PessoaController {
     
     @Autowired
-    private EstadoService estadoService;
+    private PessoaService pessoaService;
 
-   
     @GetMapping("/")
-    public List<Estado> buscarTodos(){
-        return estadoService.buscarTodos();
+    public List<Pessoa> buscarTodos(){
+        return pessoaService.buscarTodos();
+        
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Pessoa> buscarPorId(@PathVariable ("id") Long id){
+        return ResponseEntity.ok(pessoaService.buscarPorId(id));
+
     }
 
     @PostMapping("/")
-    public Estado inserir(@RequestBody Estado estado){
-        return estadoService.inserir(estado);
+    public Pessoa inserir(@RequestBody Pessoa pessoa){
+        return pessoaService.inserir(pessoa);
+        
     }
 
-    @PutMapping("/")
-    public Estado alterar(@RequestBody Estado estado){
-        return estadoService.alterar(estado);
+    @PutMapping
+    public Pessoa Alterar(@RequestBody Pessoa pessoa){
+        return pessoaService.alterar(pessoa);
+
     }
 
-    
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable ("id") Long id){
-        estadoService.excluir(id);
-        return ResponseEntity.ok().build();
-    }
-
-    @GetMapping("/{id}")   
-    public ResponseEntity<Estado> buscarPorId(@PathVariable("id") Long id){
-        return ResponseEntity.ok(estadoService.buscarPorId(id));
-    
+        pessoaService.excluir(id);
+        return ResponseEntity.ok().build();      
     }
 
 }
-
