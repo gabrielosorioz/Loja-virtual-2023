@@ -21,24 +21,16 @@ public class EstadoService {
         return estadoRepository.findById(id).get();
     }
 
-    public Estado inserir(Estado estado) {
-    
-    @Autowired
-    private EstadoRepository estadoRepository;
-
-    public List<Estado> buscarTodos(){
-        return estadoRepository.findAll();
-    }
-
-    public Estado inserir(Estado estado){
-        estado.setDataCriacao(new Date());
-        Estado estadoNovo = estadoRepository.saveAndFlush(estado);
-        return estadoNovo;
-    }
 
     public Estado alterar(Estado estado){        
         estado.setDataAtualizacao(new Date());
         return estadoRepository.saveAndFlush(estado);
+    }
+    
+    public Estado inserir(Estado estado) {
+        estado.setDataCriacao(new Date());
+        Estado estadoNovo = estadoRepository.saveAndFlush(estado);
+        return estadoNovo;
     }
 
     public void excluir(Long id){

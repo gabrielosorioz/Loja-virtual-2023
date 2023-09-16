@@ -20,11 +20,7 @@ public class EstadoController {
     @Autowired
     private EstadoService estadoService;
 
-
-    @GetMapping("/")
-    public List<Estado> buscarTodos(){
-       return estadoService.buscarTodos();
-    
+   
     @GetMapping("/")
     public List<Estado> buscarTodos(){
         return estadoService.buscarTodos();
@@ -40,10 +36,6 @@ public class EstadoController {
         return estadoService.alterar(estado);
     }
 
-    @DeleteMapping("/{id}")   
-    public ResponseEntity<Void> excluir(@PathVariable("id") Long id){
-       return estadoService.alterar(estado);
-    }
     
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable ("id") Long id){
