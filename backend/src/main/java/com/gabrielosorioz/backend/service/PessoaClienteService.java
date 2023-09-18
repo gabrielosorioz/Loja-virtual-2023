@@ -18,13 +18,18 @@ public class PessoaClienteService {
     @Autowired
     private PermissaoPessoaService permissaoPessoaService;
 
-    
+    @Autowired
+    private EmailService emailService;
+
+    private String mensagem = "O registro na loja foi realizado com Sucesso. Em breve você receberá a senha de acesso por e-mail" ;
 
     public Pessoa registrar(PessoaClienteRequestDTO pessoaClienteRequestDTO){
         Pessoa pessoa = new PessoaClienteRequestDTO().converter(pessoaClienteRequestDTO);
         pessoa.setDataCriacao(new Date());
         Pessoa newPessoa = pessoaClienteRepository.saveAndFlush(pessoa);
         permissaoPessoaService.vincularPessoaPermissaoCliente(newPessoa);
+        emailService.enviarEmailTexto(newPessoa.getEmail(), "Cadastro na Loja MegaSource", mensagem);
+
         return newPessoa;
     }
 }
