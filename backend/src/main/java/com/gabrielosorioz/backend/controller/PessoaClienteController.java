@@ -5,22 +5,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.gabrielosorioz.backend.dto.PessoaClienteRequestDTO;
 import com.gabrielosorioz.backend.entity.Pessoa;
-import com.gabrielosorioz.backend.service.PessoaService;
+import com.gabrielosorioz.backend.service.PessoaClienteService;
+
 
 @RestController
 @RequestMapping("api/cliente")
 public class PessoaClienteController {
     
     @Autowired
-    private PessoaService pessoaService;
+    private PessoaClienteService pessoaClienteService;
 
      @PostMapping("/")
-     public Pessoa inserir (@RequestBody PessoaClienteRequestDTO pessoaClienteRequestDTO){    
-        Pessoa pessoa = new PessoaClienteRequestDTO().converter(pessoaClienteRequestDTO);
-        return pessoaService.inserir(pessoa);
+     public Pessoa inserir(@RequestBody PessoaClienteRequestDTO pessoaClienteRequestDTO){    
+        return pessoaClienteService.registrar(pessoaClienteRequestDTO);
      
     }
 
