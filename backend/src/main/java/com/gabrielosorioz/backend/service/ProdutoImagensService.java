@@ -57,7 +57,7 @@ public class ProdutoImagensService {
 				
                 byte[] bytes = file.getBytes();
                 String nomeImagem = String.valueOf(produto.getId()) + file.getOriginalFilename();
-				Path caminho = Paths.get("C:/Users/gabri/Downloads/imagens" +nomeImagem );
+				Path caminho = Paths.get("C:/Users/gabri/Downloads/imagens/" +nomeImagem );
 				Files.write(caminho, bytes);
                 objeto.setNome(nomeImagem);
 
