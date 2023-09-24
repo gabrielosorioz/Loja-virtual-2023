@@ -18,8 +18,9 @@ const AppMenu = () => {
         {
             label: 'Cadastros',
             items:[
-                { label: 'Estado', icon: 'pi pi-map', to: '/pages/cadastro' },
-                { label: 'Cidade', icon: 'pi pi-map', to: '/pages/cidade' }
+                { label: 'Estado', icon: 'pi pi-map', to: '/pages/cadastro/estado' },
+                { label: 'Cidade', icon: 'pi pi-map', to: '/pages/cadastro/cidade' },
+                { label: 'Marca', icon: 'pi pi-bookmark', to: '/pages/cadastro/marca' }
                 
                  ]
         },
