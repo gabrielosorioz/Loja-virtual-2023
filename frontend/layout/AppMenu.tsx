@@ -20,9 +20,12 @@ const AppMenu = () => {
             items:[
                 { label: 'Estado', icon: 'pi pi-map', to: '/pages/cadastro/estado' },
                 { label: 'Cidade', icon: 'pi pi-map', to: '/pages/cadastro/cidade' },
-                { label: 'Marca', icon: 'pi pi-bookmark', to: '/pages/cadastro/marca' }
+                { label: 'Marca', icon: 'pi pi-bookmark', to: '/pages/cadastro/marca' },
+                { label: 'Categoria', icon: 'pi pi-bookmark', to: '/pages/cadastro/categoria' },
+                { label: 'Usuário', icon: 'pi pi-bookmark', to: '/pages/cadastro/pessoa' },
+                { label: 'Permissão', icon: 'pi pi-bookmark', to: '/pages/cadastro/permissao' }
                 
-                 ]
+                ]
         },
         {
             label: 'UI Components',
