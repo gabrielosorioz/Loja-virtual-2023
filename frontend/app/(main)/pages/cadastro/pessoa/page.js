@@ -265,8 +265,8 @@ const Pessoa = () => {
 
                             <div className="field">
                                 <label htmlFor="cpf">CPF*</label>
-                                <InputMask mask="999.999.999-99" id="cpf" value={formik.values.cpf} onChange={formik.handleChange} className={classNames({ 'p-invalid': isFormFieldValid('email') })} />
-                                {getFormErrorMessage('email')}
+                                <InputMask mask="999.999.999-99" id="cpf" value={formik.values.cpf} onChange={formik.handleChange} className={classNames({ 'p-invalid': isFormFieldValid('cpf') })} />
+                                {getFormErrorMessage('cpf')}
                             </div>
 
                             <div className="field">
