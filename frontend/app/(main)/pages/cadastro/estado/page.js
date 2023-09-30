@@ -191,11 +191,11 @@ const Estado = () => {
                     </DataTable>
 
                     <Dialog visible={objetoDialog} style={{ width: '450px' }} header="Cadastrar/Editar" modal className="p-fluid" footer={objetoDialogFooter} onHide={hideDialog}>
-
+                        
                         <div className="field">
                             <label htmlFor="nome">Nome</label>
                             <InputText id="nome" value={objeto.nome} onChange={(e) => onInputChange(e, 'nome')} required autoFocus className={classNames({ 'p-invalid': submitted && !objeto.nome })} />
-                            {submitted && !objeto.name && <small className="p-invalid">Nome é Obrigatório.</small>}
+                            {submitted && !objeto.nome && <small className="p-invalid">Nome é Obrigatório.</small>}
                         </div>
                         <div className="field">
                             <label htmlFor="sigla">Sigla</label>
