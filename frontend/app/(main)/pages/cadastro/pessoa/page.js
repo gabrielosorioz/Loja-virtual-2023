@@ -7,12 +7,7 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Toast } from 'primereact/toast';
 import { Button } from 'primereact/button';
-import { FileUpload } from 'primereact/fileupload';
-import { Rating } from 'primereact/rating';
 import { Toolbar } from 'primereact/toolbar';
-import { InputTextarea } from 'primereact/inputtextarea';
-import { RadioButton } from 'primereact/radiobutton';
-import { InputNumber } from 'primereact/inputnumber';
 import { Dialog } from 'primereact/dialog';
 import { InputMask } from 'primereact/inputmask';
 import { MultiSelect } from 'primereact/multiselect';
@@ -20,6 +15,7 @@ import { InputText } from 'primereact/inputtext';
 import {PessoaService} from '../../../../../demo/service/cadastro/PessoaService';
 import {CidadeService} from '../../../../../demo/service/cadastro/CidadeService';
 import { PermissaoService } from '../../../../../demo/service/cadastro/PermissaoService';
+
 
 //{nome:'Frank', permissaoPessoas:[{permissao:{id:55}}]}
 
@@ -60,9 +56,8 @@ const Pessoa = () => {
             if (!data.nome) {
                 errors.nome = 'Nome é obrigatório';
             }
-
-            if(!data.cpf){
-                errors.cpf = 'CPF é Obrigatório';
+            if (!data.cpf){
+                errors.cpf = 'CPF é obrigatório';
             }
 
             if (!data.email) {
@@ -75,11 +70,9 @@ const Pessoa = () => {
             return errors;
         },
         onSubmit: (data) => {
-            console.log("Entrou no submit do formik");
             setObjeto(data);
             saveObjeto();
-            formik.handleReset();
-     
+            formik.resetForm();
         }
     });
 
@@ -122,38 +115,28 @@ const Pessoa = () => {
         setObjetoDeleteDialog(false);
     }
 
-   
+
+
     const saveObjeto = () => {
-        console.log("dentro da função saveobjeto()")
         setSubmitted(true);
 
         if (objeto.nome.trim()) {
-            console.log("nome do objeto está populado")
             let _objeto = formik.values;
             if (objeto.id) {
-                console.log("Condição para alterar o objeto === true")
                 objetoService.alterar(_objeto).then(data => {
                     toast.current.show({ severity: 'success', summary: 'Sucesso', detail: 'Alterado com Sucesso', life: 3000 });
                     setObjetos(null);
-                    console.log("objeto alterado com sucesso");
                 });
             }
             else {
-                console.log("Condição para inserir o objeto === true")
                 objetoService.inserir(_objeto).then(data => {
                     toast.current.show({ severity: 'success', summary: 'Sucesso', detail: 'Inserido com Sucesso', life: 3000 });
                     setObjetos(null);
-                    console.log("objeto inserido com sucesso");
-                    
                 });
 
             }
-            console.log("nenhuma das condições foram atendidas")
             setObjetoDialog(false);
-            console.log("Dialog ocultado")
             setObjeto(objetoNovo);
-            console.log("esvaziou o objeto")
-            
         }
     }
 
@@ -244,7 +227,7 @@ const Pessoa = () => {
     const objetoDialogFooter = (
         <>
             <Button label="Cancelar" icon="pi pi-times" className="p-button-text" onClick={hideDialog} />
-            <Button type="submit" form="formularioPessoa" label="Salvar" icon="pi pi-check" className="p-button-text"/>
+            <Button type="submit" form="formularioPessoa" label="Salvar" icon="pi pi-check" className="p-button-text" />
         </>
     );
 
@@ -274,7 +257,6 @@ const Pessoa = () => {
 
                     <Dialog visible={objetoDialog} style={{ width: '450px' }} header="Cadastrar/Editar" modal className="p-fluid" footer={objetoDialogFooter} onHide={hideDialog}>
                         <form id="formularioPessoa" onSubmit={formik.handleSubmit}>
-                       
                             <div className="field">
                                 <label htmlFor="nome">Nome*</label>
                                 <InputText id="nome" value={formik.values.nome} onChange={formik.handleChange} autoFocus className={classNames({ 'p-invalid': isFormFieldValid('nome') })} />
@@ -283,8 +265,8 @@ const Pessoa = () => {
 
                             <div className="field">
                                 <label htmlFor="cpf">CPF*</label>
-                                <InputMask mask="999.999.999-99" id="cpf" value={formik.values.cpf} onChange={formik.handleChange}  className={classNames({ 'p-invalid': isFormFieldValid('cpf') })}/>
-                                {getFormErrorMessage('cpf')}
+                                <InputMask mask="999.999.999-99" id="cpf" value={formik.values.cpf} onChange={formik.handleChange} className={classNames({ 'p-invalid': isFormFieldValid('email') })} />
+                                {getFormErrorMessage('email')}
                             </div>
 
                             <div className="field">
